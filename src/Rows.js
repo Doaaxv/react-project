@@ -1,58 +1,49 @@
 import React, { Component } from 'react'
-import { Card,Table } from 'react-bootstrap'
+import { Modal, Table, Row, Col } from 'react-bootstrap'
 
 
 export default class Rows extends Component {
 
+    state = { modalIsOpen: false }
+
+    toggleModel() {
+        this.setState({ modalIsOpen: !this.state.modalIsOpen })
+    }
+
     render() {
-
-    //  
-        
-
         return (
-            <tr>
-
-                 {/* <Table striped bordered hover variant="dark"> 
-                    <thead>
-                        <tr>
-                            <th>Airline</th>
-                            <th>Scheduled Time</th>
-                            <th>City</th>
-                            <th>Airport</th>
-                        </tr>
-                    </thead> 
-                     <tbody> */}
-
-                        {/* <tr>  */}
-                        
-                        {/* { this.props.cities != null && this.props.airports != null && 
-                        <tr> */}
-                       
-
-                     
-                       {/* 
-                                        <th>Airport</th>
-                                        <th>Status</th> */}
-                            <td>{this.props.items.flight.iataNumber}</td> 
-                            <td>{this.props.items.airline.name}</td>
-                            <td>{this.props.items[this.props.listType].scheduledTime.split("T")[1].split(".")[0]}</td>
-                            <td>{this.props.airport[0].nameAirport}</td>
-                            <td>{this.props.items.status}</td> 
-                       
-                    
 
 
-                        {/* </tr>
-                        } */}
-                            
-                       {/* </tr> */}
+            <tr onClick={this.toggleModel.bind(this)}>
+                <Modal show={this.state.modalIsOpen} onHide={this.toggleModel.bind(this)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Flight Information</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Row>
+                            <Col>
+                                <p><strong>Flight No: </strong>{this.props.items.flight.iataNumber}</p>
+                                <p><strong>Departure Time:</strong>
+                                    {this.props.items["departure"].scheduledTime.split("T")[1].split(".")[0]}
+                                </p>
+                            </Col>
+
+                            <Col>
+                                <p><strong>Airline: </strong>{this.props.items.airline.name}</p>
+                                <p><strong>Arrival time:</strong>
+                                    {this.props.items["arrival"].scheduledTime.split("T")[1].split(".")[0]}
+                                </p>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
 
 
-                    {/* </tbody> 
-                </Table>  */}
-
-
-
+                <td>{this.props.items.flight.iataNumber}</td>
+                <td>{this.props.items.airline.name}</td>
+                <td>{this.props.items["departure"].scheduledTime.split("T")[1].split(".")[0]}</td>
+                <td>{this.props.airport[0].nameAirport}</td>
+                <td>{this.props.items.status}</td>
             </tr>
         )
     }

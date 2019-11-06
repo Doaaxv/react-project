@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+*{
+  font-family:'Roboto', sans-serif;
+}
+.appsBackground{
+  background:green;
+}
+
 .navStyle{
   color:red;
   background:green;
@@ -5,7 +14,20 @@
 
 .navLinkStyle{
   color:yellow;
-  
+  color:#fd7804;
+}
+
+.notFoundStyle{
+  margin-top:10%;
+  text-align: center;
+}
+
+.flightListStt{
+  display:flex;
+  flex-flow: row;
+  /* display: inline-block;
+  white-space: nowrap;
+  display:inline-block; */
 }
 
 .filmListStyle{
@@ -26,4 +48,37 @@
 .divOftable{
   margin-right:10px;
   margin-left:10px;
+}
+
+.searchContainer{
+  text-align:center;
+  margin:auto;
+}
+
+.h3Styles{
+  margin-right:10px;
+  margin-left:10px;
+  font-size: 30px;
+  color:#2c3e50;
+}
+
+
+.formTitle{
+  font-size: 30px;
+  color:#2c3e50;
+}
+
+.button {
+  background-color: #fd7804;  
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+  margin:30px;
+}
+
+.button:focus,
+.button:hover {
+  background-color: #ee7c18;
+  color: White;
 }

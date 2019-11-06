@@ -1,28 +1,28 @@
 import React from "react";
-import { Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
 import { MuiRail, MuiHandle, MuiTrack, MuiTick } from "./components";
 import BarChart from "./BarChart";
 
 class RangeSlider extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        const range = [this.props.start, this.props.end];
-        this.state = {
-          domain: range,
-          update: range,
-          values: range,
-          type:this.props.type
-        };
-    }
+  constructor(props) {
+    super(props);
 
-    render() {
-        const { domain, values, update,type} = this.state;
-        console.log("Values: ")
-        console.log(values)
-        return (
-          <Grid container>
+    const range = [this.props.start, this.props.end];
+    this.state = {
+      domain: range,
+      update: range,
+      values: range,
+      type: this.props.type
+    };
+  }
+
+  render() {
+    const { domain, values, update, type } = this.state;
+    console.log("Values: ")
+    console.log(values)
+    return (
+      <Grid container>
         <Grid item xs={12}>
           <div style={{ margin: "10%" }}>
             <BarChart
@@ -41,8 +41,8 @@ class RangeSlider extends React.Component {
               onUpdate={update =>
                 this.setState({ update, inputValues: update })
               }
-              
-              onChange={values => {this.setState({ values }); this.props.rangeUpdate(values,type); }}
+
+              onChange={values => { this.setState({ values }); this.props.rangeUpdate(values, type); }}
               values={values}
             >
               <Rail>
@@ -76,7 +76,7 @@ class RangeSlider extends React.Component {
                   </div>
                 )}
               </Tracks>
-              <Ticks values={[this.props.start,this.props.end]}>
+              <Ticks values={[this.props.start, this.props.end]}>
                 {({ ticks }) => (
                   <div className="slider-ticks">
                     {ticks.map(tick => (
@@ -86,22 +86,18 @@ class RangeSlider extends React.Component {
                 )}
               </Ticks>
             </Slider>
-            {/* <Grid
-            //   container
+            <Grid
+              //   container
               alignItems="center"
               justify="space-around"
               style={{ marginTop: "88px" }}
             >
-              
-              
-              
-            </Grid> */}
-      
+            </Grid>
           </div>
         </Grid>
-        </Grid>
-        )
-    }
+      </Grid>
+    )
+  }
 }
 
 export default RangeSlider;
