@@ -20,15 +20,15 @@ react-component-slider npm package
 
 components breakdown (dark components are for the slider which I used from the packages mentioned above)
 
-![components breakdon](C:\Users\Doaaxv\Desktop\SEI\projects\project2\p02t01\test1\src\projectTree.png)
+![components breakdon](.\src\projectTree.png)
 
 The main page
 
-![wirefram1](C:\Users\Doaaxv\Desktop\SEI\projects\project2\p02t01\test1\src\wireframe1.png)
+![wirefram1](.\src\wireframe1.png)
 
 after the user enters the search input and click on "search btn"
 
-![wirefram2](C:\Users\Doaaxv\Desktop\SEI\projects\project2\p02t01\test1\src\wireframe2.png)
+![wirefram2](.\src\wireframe2.png)
 
 Planning and development process
 
