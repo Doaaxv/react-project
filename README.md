@@ -1,68 +1,84 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Title
 
-## Available Scripts
+Flights timetable 
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+This website is implementation to what I learned in React, it's a flights timetable website that displays all the coming and leaving flights from a specific places in 24 hours.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technical Used
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+React
+Bootstrap with React
+Axios
+material-ui/core npm package
+react-component-slider npm package
+```
 
-### `npm test`
+### wireframes
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+components breakdown (dark components are for the slider which I used from the packages mentioned above)
 
-### `npm run build`
+![components breakdon](C:\Users\Doaaxv\Desktop\SEI\projects\project2\p02t01\test1\src\projectTree.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The main page
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![wirefram1](C:\Users\Doaaxv\Desktop\SEI\projects\project2\p02t01\test1\src\wireframe1.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+after the user enters the search input and click on "search btn"
 
-### `npm run eject`
+![wirefram2](C:\Users\Doaaxv\Desktop\SEI\projects\project2\p02t01\test1\src\wireframe2.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Planning and development process
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### User stories
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- as a user I would like to search for the destination and arrival location
+- as a user I would like to filter the flights based on time
+- as a user I would like to get information on the flights in two ways (departing and arriving)
+- as a user I would like to see the status of the flights in the table
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Planning and development process
 
-## Learn More
+- Day 1:
+  - Looking for API and testing it.
+- Day 2:
+  - Found an API and displayed the data.
+  - created the components.
+- Day 3:
+  - Worked on the search feature.
+  - worked on the filter feature.
+- Day 4:
+  - Finalizing and styling
+  - working on the readme page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Problem-solving strategy
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+used console.log() to trace the errors and to check if the data is retrieved from the API
 
-### Code Splitting
+### Unsolved problems
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- The styling is not as perfect as I would like it to be.
+- the filter feature still needs more work.
 
-### Analyzing the Bundle Size
+### API used
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+##### [Aviation edge](http://aviation-edge.com)
 
-### Making a Progressive Web App
+I've used 3 of their APIs 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Cities API
+- Airports API
+- Timetable API
 
-### Advanced Configuration
+### Acknowledgments
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+I would like to thank my instructors for being patience with me and helping me find an API, and for their constant encouragements and motivation. Also, I would like to thank my classmates for their help and support.
 
-### Deployment
+### References
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- [@material-ui/core](https://www.npmjs.com/package/@material-ui/core)
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [react-compound-sider](https://www.npmjs.com/package/react-compound-sider)
+- [codesandbox example](https://codesandbox.io/rangeslider-with-histogram-voos8)

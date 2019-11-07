@@ -235,6 +235,14 @@ export default class FlightList extends Component {
 
     render() {
 
+        /*inside the render is the grid of the slider and the bar chart, 
+        before each component to be displayed is an if statements to make sure all the needed
+        props and states are not null
+        the table printing code is repeated 4 times, 2 for the one on the right and 2 for the one on the left
+        I reapeated them because when the user manipulate the the filter slider I wouldn't lose the original data
+        so I declared two object one for the original data when the user first gets his restult
+        the other when the user manipulate the slider
+        */
         return (
             <div >
                 <div className="flightListStt">

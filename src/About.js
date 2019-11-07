@@ -9,9 +9,9 @@ export default class Clocks extends Component {
                 <Container justify="center" >
                 <Row>
                     <Col >
-                    <p>The flight timetable website shows you the flights from and to a city of you choice,
-                        you can filter the time of the flights.
-                         </p>
+                    <h2 className="aboutStyle">The flight timetable website shows you the flights of the coming 24 hours, 
+                        from and to a city of your choice, you can filter the time of the flights by using the slider.
+                         </h2>
                     </Col>
                     
                 </Row>

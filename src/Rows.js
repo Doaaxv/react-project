@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, Table, Row, Col } from 'react-bootstrap'
+import { Modal, Row, Col } from 'react-bootstrap'
 
 
 export default class Rows extends Component {
@@ -11,6 +11,7 @@ export default class Rows extends Component {
     }
 
     render() {
+        
         return (
 
 
@@ -24,14 +25,14 @@ export default class Rows extends Component {
                             <Col>
                                 <p><strong>Flight No: </strong>{this.props.items.flight.iataNumber}</p>
                                 <p><strong>Departure Time:</strong>
-                                    {this.props.items["departure"].scheduledTime.split("T")[1].split(".")[0]}
+                                    {this.props.items.departure.scheduledTime.split("T")[1].split(".")[0]}
                                 </p>
                             </Col>
 
                             <Col>
                                 <p><strong>Airline: </strong>{this.props.items.airline.name}</p>
                                 <p><strong>Arrival time:</strong>
-                                    {this.props.items["arrival"].scheduledTime.split("T")[1].split(".")[0]}
+                                    {this.props.items.arrival.scheduledTime.split("T")[1].split(".")[0]}
                                 </p>
                             </Col>
                         </Row>
@@ -41,7 +42,7 @@ export default class Rows extends Component {
 
                 <td>{this.props.items.flight.iataNumber}</td>
                 <td>{this.props.items.airline.name}</td>
-                <td>{this.props.items["departure"].scheduledTime.split("T")[1].split(".")[0]}</td>
+                <td>{this.props.items.departure.scheduledTime.split("T")[1].split(".")[0]}</td>
                 <td>{this.props.airport[0].nameAirport}</td>
                 <td>{this.props.items.status}</td>
             </tr>
