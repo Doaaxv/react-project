@@ -21,6 +21,7 @@ export default class FlightList extends Component {
         rangeObjDep: null,
         depRangeIndices: [],
         departureObjects: null,
+        
 
         rangeArrayArr: null,
         rangeObjArr: null,
@@ -34,8 +35,8 @@ export default class FlightList extends Component {
     componentDidMount() {
         this.setState({ cities: this.props.cities })
 
-        var timeTableDepUrl = `http://aviation-edge.com/v2/public/timetable?key=${credentials.API_KEY}&iataCode=${this.props.iataFrom}&type=departure`
-        var timeTableArrUrl = `http://aviation-edge.com/v2/public/timetable?key=${credentials.API_KEY}&iataCode=${this.props.iataFrom}&type=arrival`
+        var timeTableDepUrl = `https://aviation-edge.com/v2/public/timetable?key=${credentials.API_KEY}&iataCode=${this.props.iataFrom}&type=departure`
+        var timeTableArrUrl = `https://aviation-edge.com/v2/public/timetable?key=${credentials.API_KEY}&iataCode=${this.props.iataFrom}&type=arrival`
         var urlAirport = `https://aviation-edge.com/v2/public/airportDatabase?key=${credentials.API_KEY}`
 
         axios.get(urlAirport)
@@ -59,17 +60,17 @@ export default class FlightList extends Component {
             })
             .catch()
     }
+
     //range setup and update
     rangeSetupDep = (data) => {
         let timeArr;
-        if (data != null) {
+        if (data !== null) {
 
             //save all the time info in the timeArr
             timeArr = data.map(item => {
                 let v = item.departure.scheduledTime
                 let date = new Date(v).getHours();
                 return date
-
             })
 
             //this array stores how many occurance for each time is
@@ -82,14 +83,14 @@ export default class FlightList extends Component {
             }
 
             //storing the occurance for each time
-            timeArr.map(item => {
+            timeArr.forEach(item => {
                 ranges[parseInt(item)] += 1
             })
 
             //finding the largest index, from this we find the largest 'time' that occured in the range array
             var largestIndex = 0;
             for (let i = ranges.length - 1; i >= 0; i--) {
-                if (ranges[i] != 0) {
+                if (ranges[i] !== 0) {
                     largestIndex = i
                     break;
                 }
@@ -98,7 +99,7 @@ export default class FlightList extends Component {
             //finding the smallest index, from this we find the smallest 'time' that occured in the range array
             var smallestIndex = 0
             for (let i = 0; i < ranges.length; i++) {
-                if (ranges[i] != 0) {
+                if (ranges[i] !== 0) {
                     smallestIndex = i
                     break;
                 }
@@ -114,7 +115,7 @@ export default class FlightList extends Component {
 
     rangeSetupArr = (data) => {
         let timeArr;
-        if (data != null) {
+        if (data !== null) {
             //save all the time info in the timeArr
             timeArr = data.map(item => {
                 let v = item.departure.scheduledTime
@@ -131,14 +132,14 @@ export default class FlightList extends Component {
             }
 
             //storing the occurance for each time
-            timeArr.map(item => {
+            timeArr.forEach(item => {
                 ranges[parseInt(item)] += 1
             })
 
             //finding the largest index, from this we find the largest 'time' that occured in the range array
             var largestIndex = 0;
             for (let i = ranges.length - 1; i >= 0; i--) {
-                if (ranges[i] != 0) {
+                if (ranges[i] !== 0) {
                     largestIndex = i
                     break;
                 }
@@ -147,7 +148,7 @@ export default class FlightList extends Component {
             //finding the smallest index, from this we find the smallest 'time' that occured in the range array
             var smallestIndex = 0
             for (let i = 0; i < ranges.length; i++) {
-                if (ranges[i] != 0) {
+                if (ranges[i] !== 0) {
                     smallestIndex = i
                     break;
                 }
@@ -163,8 +164,8 @@ export default class FlightList extends Component {
 
     rangeUpdate = (rangeIndices, type) => {
 
-        if (type == "to") {
-            var rangeObjDep = this.state.departureObjects.filter((item, index) => {
+        if (type === "to") {
+            var rangeObjDep = this.state.departureObjects.filter(item => {
 
                 let v = item.departure.scheduledTime
                 let date = new Date(v).getHours();
@@ -175,7 +176,7 @@ export default class FlightList extends Component {
             })
             this.setState({ rangeObjDep })
         } else {
-            var rangeObjArr = this.state.arrivedObjects.filter((item, index) => {
+            var rangeObjArr = this.state.arrivedObjects.filter(item => {
 
                 let v = item.departure.scheduledTime
                 let date = new Date(v).getHours();
@@ -197,24 +198,24 @@ export default class FlightList extends Component {
     //in these functions user's input is filtered to show the time table
     inputChange2 = (iataFrom, iataTo) => {
         var citiesFlights = this.state.timeTableArr.filter(item => {
-            if (item.departure.iataCode == iataTo) {
+            if (item.departure.iataCode === iataTo) {
                 return item
             }
 
         })
 
         var filteredWithArrivals = citiesFlights.filter(item => {
-            if (item.arrival.iataCode == iataFrom)
+            if (item.arrival.iataCode === iataFrom)
                 return item
         })
 
-        this.setState({ arrivedObjects: filteredWithArrivals })
+        this.setState({ arrivedObjects: filteredWithArrivals,rangeObjArr:filteredWithArrivals })
     }
 
     inputChange = (iataFrom, iataTo) => {
         var citiesFlights = this.state.timeTableDep.filter((item, index) => {
             if (index < 50) {
-                if (item["departure"].iataCode == iataFrom) {
+                if (item.departure.iataCode === iataFrom) {
                     return item
                 }
             }
@@ -222,12 +223,12 @@ export default class FlightList extends Component {
 
         var filteredWithArrivals = citiesFlights.filter((item, index) => {
             if (index < 50) {
-                if (item["arrival"].iataCode == iataTo)
+                if (item.arrival.iataCode === iataTo)
                     return item
             }
         })
 
-        this.setState({ departureObjects: filteredWithArrivals })
+        this.setState({ departureObjects: filteredWithArrivals ,rangeObjDep:filteredWithArrivals})
 
     }
 
@@ -238,22 +239,21 @@ export default class FlightList extends Component {
         /*inside the render is the grid of the slider and the bar chart, 
         before each component to be displayed is an if statements to make sure all the needed
         props and states are not null
-        the table printing code is repeated 4 times, 2 for the one on the right and 2 for the one on the left
-        I reapeated them because when the user manipulate the the filter slider I wouldn't lose the original data
-        so I declared two object one for the original data when the user first gets his restult
-        the other when the user manipulate the slider
+        the table printing code is reapeated 2 times, right side for the flights arriving and left side for the flights 
+        leaving and inside the each table is a map calling for the row component which will print each row of the table.
         */
         return (
             <div >
+                {/* the histogram graph code */}
                 <div className="flightListStt">
-                    {this.state.rangeArrayDep != null &&
-                        this.state.departureObjects != null &&
+                    {this.state.rangeArrayDep !== null &&
+                        this.state.departureObjects !== null &&
                         this.state.depRangeIndices.length > 0 &&
                         <Grid
                             style={{ width: "30%", height: "30%", margin: "auto" }}
                             justify="center">
                             <Grid item xs={12} style={{ textAlign: "center" }}>
-                                <Typography variant="subtitle2">{"From " + this.props.iataFrom + " to " + this.props.iataTo}</Typography>
+                                <Typography variant="h3">{"From " + this.props.iataFrom + " to " + this.props.iataTo}</Typography>
                             </Grid>
                             <Grid item xs={12} style={{ textAlign: "center" }}>
                                 <RangeSlider
@@ -267,15 +267,15 @@ export default class FlightList extends Component {
                         </Grid>
 
                     }
-                    {this.state.rangeArrayArr != null &&
-                        this.state.arrivedObjects != null &&
+                    {this.state.rangeArrayArr !== null &&
+                        this.state.arrivedObjects !== null &&
                         this.state.arrRangeIndices.length > 0 &&
 
                         <Grid
                             style={{ width: "30%", height: "30%", margin: "auto" }}
                             justify="center">
                             <Grid item xs={12} style={{ textAlign: "center" }}>
-                                <Typography variant="subtitle2">{"From " + this.props.iataTo + " to " + this.props.iataFrom}</Typography>
+                                <Typography variant="h3">{"From " + this.props.iataTo + " to " + this.props.iataFrom}</Typography>
                             </Grid>
                             <Grid item xs={12} style={{ textAlign: "center" }}>
                                 <RangeSlider
@@ -290,11 +290,13 @@ export default class FlightList extends Component {
 
                     }
                 </div>
+
+           {/* tables code */}   
                 <div className="divOftable">
                     <Row>
                         <Col>
-                            {/* <h2 style={{color:'white'}}>{"From " + this.props.iataFrom + " to " + this.props.iataTo}</h2> */}
-                            <Table striped bordered hover variant="light">
+                        {/* printing the departing flights */}
+                              <Table striped bordered hover variant="light">
                                 <thead>
                                     <tr>
                                         <th>Flight No.</th>
@@ -305,72 +307,40 @@ export default class FlightList extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.timeTableDep != null &&
-                                        this.state.rangeObjDep == null &&
-                                        this.props.cities != null &&
-                                        this.state.airports != null &&
-                                        this.state.departureObjects != null &&
-                                        this.state.departureObjects.map((item, index) => {
-                                            if (index < 50) {
-                                                return <Rows
-
-                                                    id={index}
-                                                    listType="arrival"
-
-                                                    city={
-                                                        this.props.cities.filter(itemCity => {
-                                                            var iata = item["arrival"].iataCode
-                                                            if (itemCity.codeIataCity === iata) {
-                                                                return itemCity.codeIataCity === iata
-                                                            }
-                                                        })
-                                                    }
-                                                    airport={
-                                                        this.state.airports.filter(itemAirport => {
-                                                            var iata = item["arrival"].iataCode
-                                                            return itemAirport.codeIataAirport == iata
-                                                        }
-                                                        )}
-                                                    items={item} />
-                                            }
-                                        })}
-
-                                    {this.state.timeTableDep != null &&
-                                        this.state.rangeObjDep != null &&
-                                        this.props.cities != null &&
-                                        this.state.airports != null &&
-                                        this.state.departureObjects != null &&
+                                    {this.state.timeTableDep !== null &&
+                                        this.state.rangeObjDep !== null &&
+                                        this.props.cities !== null &&
+                                        this.state.airports !== null &&
+                                        this.state.departureObjects !== null &&
                                         this.state.rangeObjDep.map((item, index) => {
                                             if (index < 50) {
                                                 return <Rows
-                                                    id={index}
-                                                    listType="arrival"
                                                     city={
                                                         this.props.cities.filter(itemCity => {
-                                                            var iata = item["arrival"].iataCode
+                                                            var iata = item.departure.iataCode
                                                             if (itemCity.codeIataCity === iata) {
                                                                 return itemCity.codeIataCity === iata
                                                             }
-
                                                         })
                                                     }
                                                     airport={
                                                         this.state.airports.filter(itemAirport => {
-                                                            var iata = item["arrival"].iataCode
-                                                            return itemAirport.codeIataAirport == iata
+                                                            var iata = item.departure.iataCode
+                                                            return itemAirport.codeIataAirport === iata
                                                         }
                                                         )}
                                                     items={item} />
                                             }
                                         })}
+
                                 </tbody>
                             </Table>
 
                         </Col>
 
                         <Col>
-                            {/* <h2 style={{color:'white'}}>{"From " + this.props.iataTo + " to " + this.props.iataFrom}</h2> */}
-                            <Table striped bordered hover variant="light">
+                        {/* printing the arriving flight */}
+                             <Table striped bordered hover variant="light">
                                 <thead>
                                     <tr>
                                         <th>Flight No.</th>
@@ -381,48 +351,17 @@ export default class FlightList extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.timeTableArr != null &&
-                                        this.props.cities != null &&
-                                        this.state.rangeObjArr == null &&
-                                        this.state.airports != null &&
-                                        this.state.arrivedObjects != null &&
-                                        this.state.arrivedObjects.map((item, index) => {
-                                            if (index < 50) {
-                                                return <Rows
-                                                    id={index}
-
-                                                    listType="arrival"
-                                                    city={
-                                                        this.props.cities.filter(itemCity => {
-                                                            var iata = item["arrival"].iataCode
-                                                            if (itemCity.codeIataCity === iata) {
-                                                                return itemCity.codeIataCity === iata
-                                                            }
-                                                        })
-                                                    }
-                                                    airport={
-                                                        this.state.airports.filter(itemAirport => {
-                                                            var iata = item["arrival"].iataCode
-                                                            return itemAirport.codeIataAirport == iata
-                                                        }
-                                                        )}
-                                                    items={item} />
-                                            }
-                                        })}
-
-                                    {this.state.timeTableArr != null &&
-                                        this.props.cities != null &&
-                                        this.state.rangeObjArr != null &&
-                                        this.state.airports != null &&
-                                        this.state.arrivedObjects != null &&
+                                    {this.state.timeTableArr !== null &&
+                                        this.props.cities !== null &&
+                                        this.state.rangeObjArr !== null &&
+                                        this.state.airports !== null &&
+                                        this.state.arrivedObjects !== null &&
                                         this.state.rangeObjArr.map((item, index) => {
                                             if (index < 50) {
                                                 return <Rows
-                                                    id={index}
-                                                    listType="arrival"
                                                     city={
                                                         this.props.cities.filter(itemCity => {
-                                                            var iata = item["arrival"].iataCode
+                                                            var iata = item.departure.iataCode
                                                             if (itemCity.codeIataCity === iata) {
                                                                 return itemCity.codeIataCity === iata
                                                             }
@@ -430,8 +369,8 @@ export default class FlightList extends Component {
                                                     }
                                                     airport={
                                                         this.state.airports.filter(itemAirport => {
-                                                            var iata = item["arrival"].iataCode
-                                                            return itemAirport.codeIataAirport == iata
+                                                            var iata = item.departure.iataCode
+                                                            return itemAirport.codeIataAirport === iata
                                                         }
                                                         )}
                                                     items={item} />
@@ -442,8 +381,6 @@ export default class FlightList extends Component {
                         </Col>
                     </Row>
                 </div>
-
-
             </div>
         )
     }

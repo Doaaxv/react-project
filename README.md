@@ -26,7 +26,7 @@ The main page
 
 ![wirefram1](./wireframe1.png)
 
-after the user enters the search input and click on "search btn"
+After the user enters the search input and click on "search btn"
 
 ![wirefram2](./wireframe2.png)
 
@@ -60,7 +60,7 @@ used console.log() to trace the errors and to check if the data is retrieved fro
 ### Unsolved problems
 
 - The styling is not as perfect as I would like it to be.
-- the filter feature still needs more work.
+- The filter feature still needs more work.
 
 ### API used
 
@@ -74,11 +74,10 @@ I've used 3 of their APIs
 
 ### Acknowledgments
 
-I would like to thank my instructors for being patience with me and helping me find an API, and for their constant encouragements and motivation. Also, I would like to thank my classmates for their help and support.
+I would like to thank my instructors for being patience with me, helping me find an API, guiding me through this project and for their constant encouragements and motivation. Also, I would like to thank my classmates for their help and support.
 
 ### References
 
 - [@material-ui/core](https://www.npmjs.com/package/@material-ui/core)
-
 - [react-compound-sider](https://www.npmjs.com/package/react-compound-sider)
 - [codesandbox example](https://codesandbox.io/rangeslider-with-histogram-voos8)

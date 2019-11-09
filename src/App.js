@@ -18,13 +18,14 @@ export default class App extends Component {
 
   }
 
-  toggleSearchBar = (e)=>{
+  // this function hides the search bar if the user wasn't on the home page
+  toggleSearchBar = ()=>{
     this.setState({showSearchBar:!this.state.showSearchBar})
   }
 
   render() {
 
-    
+   // this components holds the nav bar and the routing 
     return (
       <div >
         <Router>

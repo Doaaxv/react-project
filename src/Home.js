@@ -22,7 +22,6 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    // var urlCity = `https://aviation-edge.com/v2/public/cityDatabase?key=923903-590cb2`
     var urlCity = `https://aviation-edge.com/v2/public/cityDatabase?key=${credentials.API_KEY}`
 
     axios.get(urlCity)
@@ -35,7 +34,7 @@ export default class Home extends Component {
 
   inputChange1 = (e) => {
     var cityIata = this.state.cities.filter(item => {
-      if (e.target.value.toUpperCase() == item.nameCity.toUpperCase()) {
+      if (e.target.value.toUpperCase() === item.nameCity.toUpperCase()) {
         this.setState({
           from: e.target.value.toUpperCase(),
           iataFrom: item.codeIataCity
@@ -47,7 +46,7 @@ export default class Home extends Component {
 
   inputChange2 = (e) => {
     var cityIata = this.state.cities.filter(item => {
-      if (e.target.value.toUpperCase() == item.nameCity.toUpperCase()) {
+      if (e.target.value.toUpperCase() === item.nameCity.toUpperCase()) {
         this.setState({
           to: e.target.value.toUpperCase(),
           iataTo: item.codeIataCity
@@ -60,31 +59,25 @@ export default class Home extends Component {
   handleSearch = () => {
     this.setState({ send: true })
   }
-  toggleSearchBar = (e) => {
+
+  toggleSearchBar = () => {
     this.setState({ showSearchBar: !this.state.showSearchBar })
   }
 
   render() {
-    console.log("window thingyyy " + window.location.href)
+    
     var currentPath = window.location.href
     var indexOfpath = currentPath.lastIndexOf("/")
     var endOfpath = currentPath.slice(indexOfpath, currentPath.length - 1)
-    console.log("kk " + endOfpath)
+    
 
     return (
       <Container fluid >
 
-        {this.state.showSearchBar == true &&
-          endOfpath.length == 0 &&
+        {this.state.showSearchBar === true &&
+          endOfpath.length === 0 &&
           <Row className="justify-content-center" >
             <Form>
-            {/* <Form.Row>
-            <Form inline>
-            <Form.Group as={Col}>
-              <Form.Label className="formTitle" >Check flights time table</Form.Label>
-              </Form.Group>
-              </Form>
-              </Form.Row> */}
 
               <Form.Row>
                 <Form inline>
@@ -99,14 +92,6 @@ export default class Home extends Component {
                   className="button js-button"
                   role="button"
                   > Search</a>
-
-                    {/* <a 
-                    // type="submit" 
-                    className="button-3d"
-                      onClick={this.handleSearch}
-                      // style={{ background: ' #e67e22', margin: '30px', border: '1px solid black' }}
-                      >
-                      Submit </a> */}
                   </Form.Group>
                 </Form>
               </Form.Row>
@@ -114,7 +99,7 @@ export default class Home extends Component {
           </Row>
         }
 
-        {this.state.send == true &&
+        {this.state.send === true &&
           <Row className="justify-content-center">
             <FlightList
               cityFrom={this.state.from}

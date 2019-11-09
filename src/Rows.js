@@ -14,7 +14,6 @@ export default class Rows extends Component {
         
         return (
 
-
             <tr onClick={this.toggleModel.bind(this)}>
                 <Modal show={this.state.modalIsOpen} onHide={this.toggleModel.bind(this)}>
                     <Modal.Header closeButton>
@@ -38,7 +37,6 @@ export default class Rows extends Component {
                         </Row>
                     </Modal.Body>
                 </Modal>
-
 
                 <td>{this.props.items.flight.iataNumber}</td>
                 <td>{this.props.items.airline.name}</td>

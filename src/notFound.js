@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import {
-    Jumbotron, Container,
-    Form, Tab, Tabs, Button,
-    FormControl, Table,
-    Row, Col
+    Container
   } from 'react-bootstrap'
 export default class notFound extends Component {
     render() {
