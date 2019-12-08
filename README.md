@@ -2,6 +2,10 @@
 
 Flights timetable 
 
+## Project Link
+
+https://flight-timetable-react.herokuapp.com/
+
 ## Description
 
 This website is implementation to what I learned in React, it's a flights timetable website that displays all the coming and leaving flights from a specific places in 24 hours.
